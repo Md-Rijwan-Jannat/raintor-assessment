@@ -4,10 +4,14 @@ import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface CardProps {
   variant?: "default" | "skill" | "process" | "contact";
   index?: number;
   children: React.ReactNode;
+  className?: string;
+  id?: string;
+  style?: React.CSSProperties;
+  onClick?: () => void;
 }
 
 export const Card = ({
@@ -23,6 +27,7 @@ export const Card = ({
     process: "bg-black text-white rounded-xl p-6 h-full",
     contact: "bg-black text-white rounded-xl p-6",
   };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

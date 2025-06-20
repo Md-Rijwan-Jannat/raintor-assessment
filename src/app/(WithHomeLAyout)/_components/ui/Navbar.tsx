@@ -166,6 +166,26 @@ export const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
               />
             )}
           </motion.button>
+
+          <Link href="/users">
+            <motion.div
+              className="hover:text-foreground/70 transition-all cursor-pointer duration-300 font-sporting-grotesque text-[16px] relative"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Users
+            </motion.div>
+          </Link>
+
+          <Link href="/location">
+            <motion.div
+              className="hover:text-foreground/70 transition-all cursor-pointer duration-300 font-sporting-grotesque text-[16px] relative"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Location
+            </motion.div>
+          </Link>
           {/* <Button icon={} size="md">
             Start Project
           </Button> */}
@@ -284,6 +304,26 @@ export const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
               >
                 Blog
               </motion.button>
+
+              <Link href="/users">
+                <motion.div
+                  className="py-2 hover:text-foreground/70 transition-all cursor-pointer duration-300 font-sporting-grotesque text-[16px] text-left"
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Users
+                </motion.div>
+              </Link>
+
+              <Link href="/location">
+                <motion.div
+                  className="py-2 hover:text-foreground/70 transition-all cursor-pointer duration-300 font-sporting-grotesque text-[16px] text-left"
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Location
+                </motion.div>
+              </Link>
               <Button
                 icon={<ArrowRight size={20} />}
                 size="sm"

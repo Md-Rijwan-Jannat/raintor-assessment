@@ -10,6 +10,9 @@ interface LoadingScreenProps {
 const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [progress, setProgress] = useState(0);
+  const [orbPositions, setOrbPositions] = useState<
+    Array<{ x: number[]; y: number[] }>
+  >([]);
 
   const steps = [
     "Initializing Experience",
@@ -18,6 +21,32 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
     "Almost Ready",
     "Welcome!",
   ];
+
+  // Set orb positions after hydration
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const updatePositions = () => {
+        // Generate orb positions
+        const positions = [...Array(6)].map(() => ({
+          x: [
+            Math.random() * window.innerWidth,
+            Math.random() * window.innerWidth,
+            Math.random() * window.innerWidth,
+          ],
+          y: [
+            Math.random() * window.innerHeight,
+            Math.random() * window.innerHeight,
+            Math.random() * window.innerHeight,
+          ],
+        }));
+        setOrbPositions(positions);
+      };
+
+      updatePositions();
+      window.addEventListener("resize", updatePositions);
+      return () => window.removeEventListener("resize", updatePositions);
+    }
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -79,7 +108,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
 
         {/* Floating Orbs */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(6)].map((_, i) => {
+          {orbPositions.map((position, i) => {
             // Define different shades and variations
             const colors = [
               "linear-gradient(45deg, #B8FF06, #C4FFEC)", // Main colors
@@ -98,16 +127,8 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                   background: colors[i % colors.length],
                 }}
                 animate={{
-                  x: [
-                    Math.random() * window.innerWidth,
-                    Math.random() * window.innerWidth,
-                    Math.random() * window.innerWidth,
-                  ],
-                  y: [
-                    Math.random() * window.innerHeight,
-                    Math.random() * window.innerHeight,
-                    Math.random() * window.innerHeight,
-                  ],
+                  x: position.x,
+                  y: position.y,
                   scale: [1, 1.5, 1],
                 }}
                 transition={{

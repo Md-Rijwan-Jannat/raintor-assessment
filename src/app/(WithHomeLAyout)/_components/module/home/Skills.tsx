@@ -247,7 +247,7 @@ export const Skills = () => {
             <div className="flex flex-row gap-4 mt-4 items-center">
               {" "}
               <button
-                className="rounded-full p-1 sm:p-2 mr-2 hover:bg-white/10 transition-colors size-[45px] sm:size-[60px] flex items-center justify-center border border-white/30"
+                className="rounded-full p-1 sm:p-2 mr-2 hover:bg-white/5 transition-colors size-[45px] sm:size-[60px] flex items-center justify-center border border-white/30"
                 onClick={prevSlide}
               >
                 <svg
@@ -266,7 +266,7 @@ export const Skills = () => {
                 </svg>
               </button>
               <button
-                className="rounded-full p-1 sm:p-2 hover:bg-white/10 transition-colors size-[45px] sm:size-[60px] flex items-center justify-center border border-white/30"
+                className="rounded-full p-1 sm:p-2 hover:bg-white/5 transition-colors size-[45px] sm:size-[60px] flex items-center justify-center border border-white/30"
                 onClick={nextSlide}
               >
                 <svg

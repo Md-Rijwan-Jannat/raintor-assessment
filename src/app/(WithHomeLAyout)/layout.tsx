@@ -1,6 +1,7 @@
 "use client";
 
 import { ThemeProvider } from "@/provider/ThemeProvider";
+import QueryProvider from "@/provider/QueryProvider";
 import { Navbar } from "./_components/ui/Navbar";
 import { useTheme } from "@/provider/ThemeProvider";
 
@@ -18,8 +19,10 @@ const LayoutWithTheme = ({ children }: { children: React.ReactNode }) => {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider>
-      <LayoutWithTheme>{children}</LayoutWithTheme>
-    </ThemeProvider>
+    <QueryProvider>
+      <ThemeProvider>
+        <LayoutWithTheme>{children}</LayoutWithTheme>
+      </ThemeProvider>
+    </QueryProvider>
   );
 }

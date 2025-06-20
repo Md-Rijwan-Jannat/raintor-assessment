@@ -1,9 +1,9 @@
-import { animate } from "framer-motion";
+import { animate, Easing } from "framer-motion";
 
 interface SmoothScrollOptions {
   duration?: number;
   offset?: number;
-  ease?: string | number[];
+  ease?: Easing;
 }
 
 export const smoothScrollTo = (
