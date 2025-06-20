@@ -17,6 +17,7 @@ interface DynamicTitleProps {
 const HighlightedText = ({ text, delay = 0.3 }: HighlightedTextProps) => {
   // Check if this is the "Develop." text to apply special styling
   const isDevelop = text.toLowerCase().includes("develop");
+  const is2013 = text === "2013";
 
   return (
     <motion.span
@@ -25,7 +26,9 @@ const HighlightedText = ({ text, delay = 0.3 }: HighlightedTextProps) => {
       transition={{ delay, duration: 0.5 }}
       className={`text-white inline-block rounded-md md:rounded-xl ${
         isDevelop
-          ? "px-6 py-3 md:px-8 md:py-4 mt-6 md:mt-8" // More padding and top margin for "Develop"
+          ? "px-6 py-3 md:px-8 md:py-4 mt-6 mb-6 md:mt-8 md:mb-8" // More padding and margin for "Develop"
+          : is2013
+          ? "px-6 py-2 md:px-8 md:py-3 mb-6 md:mb-8" // Margin for "2013"
           : "px-6 py-2 md:px-8 md:py-3" // Increased padding for other highlighted text
       }`}
     >

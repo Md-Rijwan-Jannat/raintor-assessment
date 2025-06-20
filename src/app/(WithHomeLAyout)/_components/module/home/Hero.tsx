@@ -42,11 +42,11 @@ export const Hero = () => {
               className="mb-8"
             />
 
-            <div className="items-start flex flex-row gap-10 mt-12">
+            <div className="items-start flex flex-row gap-10 mt-16">
               {/* Social Links */}
               <SocialLinks />
               <div className="flex flex-col items-start gap-3 md:ml-[200px]">
-                <p className="text-lg md:text-xl leading-[33px] text-foreground/80 font-semibold mt-4">
+                <p className="text-lg md:text-xl leading-[33px] text-foreground/80 font-semibold">
                   Building the worlds best marketing websites for over a decade.
                   <br />
                   Your trusted partner for strategy, design, and dev.

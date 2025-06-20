@@ -29,7 +29,7 @@ export const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "py-2 bg-background/80 backdrop-blur-md shadow-sm"
+          ? "py-4 bg-background/80 backdrop-blur-md shadow-sm"
           : "py-4 bg-transparent"
       }`}
     >
@@ -41,7 +41,7 @@ export const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
         >
           <Link
             href="/"
-            className="text-[34px] font-bold font-sporting-grotesque"
+            className="text-[20px] md:text-[34px] font-bold font-sporting-grotesque"
           >
             DEVLOP.ME
           </Link>
@@ -95,8 +95,8 @@ export const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
                   <path
                     d="M0 7.5H22M22 7.5C19.5905 7.04545 14.7714 4.90909 14.7714 0M22 7.5C19.5905 7.95455 14.7714 10.0909 14.7714 15"
                     stroke="black"
-                    stroke-width="1.5"
-                    stroke-linejoin="round"
+                    strokeWidth="1.5"
+                    strokeLinejoin="round"
                   />
                 </svg>
               }
