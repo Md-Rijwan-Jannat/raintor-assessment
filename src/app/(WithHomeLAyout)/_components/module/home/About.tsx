@@ -32,9 +32,9 @@ export const About = () => {
             width="1576"
             height="809.001"
             filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
+            colorInterpolationFilters="sRGB"
           >
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feBlend
               mode="normal"
               in="SourceGraphic"
@@ -54,9 +54,9 @@ export const About = () => {
             gradientUnits="userSpaceOnUse"
             gradientTransform="translate(740.969 -362.899) rotate(69.3397) scale(1290.58 7625.52)"
           >
-            <stop offset="0.223958" stop-color="#CCFF02" />
-            <stop offset="0.651042" stop-color="#59FFCD" stop-opacity="0" />
-            <stop offset="1" stop-color="#161616" stop-opacity="0" />
+            <stop offset="0.223958" stopColor="#CCFF02" />
+            <stop offset="0.651042" stopColor="#59FFCD" stopOpacity="0" />
+            <stop offset="1" stopColor="#161616" stopOpacity="0" />
           </radialGradient>
         </defs>
       </svg>

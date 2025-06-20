@@ -10,7 +10,7 @@ import SocialLinks from "./SocialLinks";
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-[888px] overflow-hidden">
+    <section className="relative min-h-[888px] overflow-hidden max-w-7xl mx-auto">
       {/* Background Image with Gradient Overlay */}
       <div className="absolute inset-0 z-0">
         <Image
