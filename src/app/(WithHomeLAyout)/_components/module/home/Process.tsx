@@ -43,11 +43,13 @@ export default function Process() {
   ];
 
   return (
-    <div className="-mt-3 p-1 bg-transparent">
+    <div className="p-1 bg-transparent">
       <Container className="px-4 sm:px-8 md:px-12 py-12 md:py-16 bg-[#141414] text-white rounded-3xl md:rounded-4xl">
         {/* Header */}
         <div className="mb-12 lg:mb-20 flex flex-col md:flex-row gap-3 md:gap-10">
-          <SectionButton variant="dark">Work Process</SectionButton>
+          <SectionButton variant="dark" targetSection="contact">
+            Work Process
+          </SectionButton>
           <h2 className="text-white text-[42px] md:text-[58px] font-bold">
             My Work Process
           </h2>

@@ -25,7 +25,7 @@ const FooterLink: React.FC<FooterLinkProps> = ({
 
 const Footer: React.FC = () => {
   return (
-    <footer className="-mt-3 p-1 bg-transparent">
+    <footer className=" p-1 bg-transparent">
       <Container className="px-4 sm:px-8 md:px-12 py-12 md:py-16 bg-black text-white rounded-3xl md:rounded-4xl">
         <div className="flex flex-col lg:flex-row justify-between gap-8">
           <div className="flex flex-col w-full">

@@ -2,6 +2,11 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import {
+  smoothScrollTo,
+  sectionMap,
+  type SectionKey,
+} from "@/utils/smoothScroll";
 
 interface SectionButtonProps {
   children: React.ReactNode;
@@ -9,6 +14,8 @@ interface SectionButtonProps {
   onClick?: () => void;
   className?: string;
   variant?: "light" | "dark"; // Added variants
+  targetSection?: SectionKey; // Add smooth scroll target
+  scrollOffset?: number; // Custom scroll offset
 }
 
 export default function SectionButton({
@@ -16,19 +23,35 @@ export default function SectionButton({
   onClick,
   className = "",
   variant = "dark", // Default is dark
+  targetSection,
+  scrollOffset = -80,
 }: SectionButtonProps) {
-  // Color styles based on variant
+  // Color styles based on variant - now theme-aware
   const isDark = variant === "dark";
-  const textColor = isDark ? "text-white" : "text-black";
+  const textColor = isDark ? "text-white" : "text-foreground";
   const bgColor = isDark ? "bg-transparent" : "bg-transparent";
-  const ringColor = isDark ? "ring-white" : "ring-black";
-  const iconStroke = isDark ? "white" : "black";
-  const iconFill = isDark ? "white" : "black";
+  const ringColor = isDark ? "ring-white" : "ring-foreground";
+  const iconStroke = isDark ? "white" : "currentColor";
+  const iconFill = isDark ? "white" : "currentColor";
+
+  // Handle button click - either custom onClick or smooth scroll
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    } else if (targetSection) {
+      const sectionId = sectionMap[targetSection];
+      smoothScrollTo(sectionId, {
+        duration: 1.2,
+        offset: scrollOffset,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      });
+    }
+  };
 
   return (
     <button
-      onClick={onClick}
-      className={`flex items-center text-[16px] rounded-full ${textColor} ${className}`}
+      onClick={handleClick}
+      className={`flex items-center text-[16px] rounded-full cursor-pointer ${textColor} ${className}`}
     >
       {/* Optional Icon or SVG */}
       <motion.span whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.99 }}>

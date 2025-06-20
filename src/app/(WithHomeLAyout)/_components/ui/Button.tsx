@@ -26,7 +26,9 @@ interface ButtonProps extends HTMLMotionProps<"button"> {
     | "secondary"
     | "success"
     | "warning"
-    | "danger";
+    | "danger"
+    | "light"
+    | "dark";
   iconPosition?: "left" | "right";
   ripple?: boolean;
   pulse?: boolean;
@@ -67,52 +69,68 @@ const iconSizes = {
 
 const variantStyles = {
   default: {
-    bg: "bg-white",
-    text: "text-black",
-    ring: "ring-black",
-    iconBg: "bg-white",
-    iconRing: "ring-black",
+    bg: "bg-foreground",
+    text: "text-foreground",
+    ring: "ring-foreground",
+    iconBg: "bg-foreground",
+    iconRing: "ring-foreground",
     hover: "hover:bg-gray-50",
   },
   primary: {
-    bg: "bg-blue-500",
-    text: "text-white",
-    ring: "ring-blue-600",
-    iconBg: "bg-blue-600",
-    iconRing: "ring-blue-700",
-    hover: "hover:bg-blue-600",
+    bg: "bg-transparent",
+    text: "text-blue-500",
+    ring: "ring-blue-500",
+    iconBg: "bg-transparent",
+    iconRing: "ring-blue-500",
+    hover: "hover:bg-blue-50",
   },
   secondary: {
-    bg: "bg-gray-500",
-    text: "text-white",
-    ring: "ring-gray-600",
-    iconBg: "bg-gray-600",
-    iconRing: "ring-gray-700",
-    hover: "hover:bg-gray-600",
+    bg: "bg-transparent",
+    text: "text-gray-500",
+    ring: "ring-gray-500",
+    iconBg: "bg-transparent",
+    iconRing: "ring-gray-500",
+    hover: "hover:bg-gray-50",
   },
   success: {
-    bg: "bg-green-500",
-    text: "text-white",
-    ring: "ring-green-600",
-    iconBg: "bg-green-600",
-    iconRing: "ring-green-700",
-    hover: "hover:bg-green-600",
+    bg: "bg-transparent",
+    text: "text-green-500",
+    ring: "ring-green-500",
+    iconBg: "bg-transparent",
+    iconRing: "ring-green-500",
+    hover: "hover:bg-green-50",
   },
   warning: {
-    bg: "bg-yellow-500",
-    text: "text-white",
-    ring: "ring-yellow-600",
-    iconBg: "bg-yellow-600",
-    iconRing: "ring-yellow-700",
-    hover: "hover:bg-yellow-600",
+    bg: "bg-transparent",
+    text: "text-yellow-500",
+    ring: "ring-yellow-500",
+    iconBg: "bg-transparent",
+    iconRing: "ring-yellow-500",
+    hover: "hover:bg-yellow-50",
   },
   danger: {
-    bg: "bg-red-500",
-    text: "text-white",
-    ring: "ring-red-600",
-    iconBg: "bg-red-600",
-    iconRing: "ring-red-700",
-    hover: "hover:bg-red-600",
+    bg: "bg-transparent",
+    text: "text-red-500",
+    ring: "ring-red-500",
+    iconBg: "bg-transparent",
+    iconRing: "ring-red-500",
+    hover: "hover:bg-red-50",
+  },
+  light: {
+    bg: "bg-transparent",
+    text: "text-foreground",
+    ring: "ring-foreground",
+    iconBg: "bg-transparent",
+    iconRing: "ring-foreground",
+    hover: "hover:bg-foreground/10",
+  },
+  dark: {
+    bg: "bg-transparent",
+    text: "text-foreground",
+    ring: "ring-foreground",
+    iconBg: "bg-transparent",
+    iconRing: "ring-foreground",
+    hover: "hover:bg-foreground/10",
   },
 };
 
@@ -300,7 +318,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           {ripples.map((ripple) => (
             <motion.span
               key={ripple.id}
-              className="absolute rounded-full bg-white/30 pointer-events-none"
+              className="absolute rounded-full bg-foreground/30 pointer-events-none"
               style={{
                 left: ripple.x - 10,
                 top: ripple.y - 10,

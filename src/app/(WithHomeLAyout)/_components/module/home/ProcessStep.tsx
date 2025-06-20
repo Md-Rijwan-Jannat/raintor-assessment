@@ -19,7 +19,7 @@ const ProcessStep: React.FC<ProcessStepProps> = ({ step }) => {
       >
         <div className="w-full flex justify-between gap-3 items-center mb-4">
           {/* Step Badge */}
-          <div className="flex items-center gap-3 bg-[#C5FFEE] rounded-full px-8 py-1 text-black w-fit group-hover:bg-black group-hover:text-white transition-all duration-500 ease-in-out">
+          <div className="flex items-center gap-3 bg-[#C5FFEE] rounded-full px-4 md:px-8 md:py-1 text-black w-fit group-hover:bg-black group-hover:text-white transition-all duration-500 ease-in-out">
             <span className="text-[20px] leading-[34px] tracking-wide">
               {step.id.charAt(0).toUpperCase() + step.id.slice(1)}
             </span>

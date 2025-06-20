@@ -6,6 +6,11 @@ import { Button } from "./Button";
 import { Moon, Sun, Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Container from "./Container";
+import {
+  smoothScrollTo,
+  sectionMap,
+  type SectionKey,
+} from "@/utils/smoothScroll";
 
 interface NavbarProps {
   theme: "light" | "dark";
@@ -15,15 +20,43 @@ interface NavbarProps {
 export const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("hero");
 
-  // Handle scroll effect
+  // Handle scroll effect and active section tracking
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+
+      // Track active section
+      const sections = ["hero", "skills", "about", "process", "contact"];
+      const currentSection = sections.find((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+
+      if (currentSection) {
+        setActiveSection(currentSection);
+      }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Handle navigation clicks
+  const handleNavClick = (sectionKey: SectionKey) => {
+    const sectionId = sectionMap[sectionKey];
+    smoothScrollTo(sectionId, {
+      duration: 1.2,
+      offset: theme === "dark" ? -100 : -80,
+      ease: [0.25, 0.46, 0.45, 0.94],
+    });
+    setMobileMenuOpen(false);
+  };
 
   return (
     <nav
@@ -54,36 +87,92 @@ export const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="hidden md:flex items-center space-x-8"
         >
-          <Link
-            href="#"
-            className="hover:text-foreground/70 transition-colors font-sporting-grotesque text-[16px]"
+          <motion.button
+            onClick={() => handleNavClick("home")}
+            className={`hover:text-foreground/70 transition-all cursor-pointer duration-300 font-sporting-grotesque text-[16px] relative ${
+              activeSection === "hero" ? "text-primary font-bold" : ""
+            }`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             Home
-          </Link>
-          <Link
-            href="#"
-            className="hover:text-foreground/70 transition-colors font-sporting-grotesque text-[16px]"
+            {activeSection === "hero" && (
+              <motion.div
+                className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                layoutId="activeNavIndicator"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+            )}
+          </motion.button>
+
+          <motion.button
+            onClick={() => handleNavClick("about")}
+            className={`hover:text-foreground/70 transition-all cursor-pointer duration-300 font-sporting-grotesque text-[16px] relative ${
+              activeSection === "about" ? "text-primary font-bold" : ""
+            }`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             About
-          </Link>
-          <Link
-            href="#"
-            className="hover:text-foreground/70 transition-colors font-sporting-grotesque text-[16px]"
+            {activeSection === "about" && (
+              <motion.div
+                className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                layoutId="activeNavIndicator"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+            )}
+          </motion.button>
+
+          <motion.button
+            onClick={() => handleNavClick("portfolio")}
+            className={`hover:text-foreground/70 transition-all cursor-pointer duration-300 font-sporting-grotesque text-[16px] relative ${
+              activeSection === "skills" ? "text-primary font-bold" : ""
+            }`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             Portfolio
-          </Link>
-          <Link
-            href="#"
-            className="hover:text-foreground/70 transition-colors font-sporting-grotesque text-[16px]"
+            {activeSection === "skills" && (
+              <motion.div
+                className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                layoutId="activeNavIndicator"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+            )}
+          </motion.button>
+
+          <motion.button
+            onClick={() => handleNavClick("blog")}
+            className={`hover:text-foreground/70 transition-all cursor-pointer duration-300 font-sporting-grotesque text-[16px] relative ${
+              activeSection === "process" ? "text-primary font-bold" : ""
+            }`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             Blog
-          </Link>
+            {activeSection === "process" && (
+              <motion.div
+                className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                layoutId="activeNavIndicator"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+            )}
+          </motion.button>
           {/* <Button icon={} size="md">
             Start Project
           </Button> */}
           <div className="flex">
             <Button
               size="sm"
+              variant="light"
               icon={
                 <svg
                   width="23"
@@ -94,12 +183,13 @@ export const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
                 >
                   <path
                     d="M0 7.5H22M22 7.5C19.5905 7.04545 14.7714 4.90909 14.7714 0M22 7.5C19.5905 7.95455 14.7714 10.0909 14.7714 15"
-                    stroke="black"
+                    stroke="currentColor"
                     strokeWidth="1.5"
                     strokeLinejoin="round"
                   />
                 </svg>
               }
+              onClick={() => handleNavClick("contact")}
             >
               Start Project
             </Button>
@@ -155,38 +245,49 @@ export const Navbar = ({ theme, toggleTheme }: NavbarProps) => {
             className="md:hidden bg-background/95 backdrop-blur-md"
           >
             <div className="flex flex-col space-y-4 p-4">
-              <Link
-                href="#"
-                className="py-2 hover:text-foreground/70 transition-colors font-sporting-grotesque text-[16px]"
-                onClick={() => setMobileMenuOpen(false)}
+              <motion.button
+                onClick={() => handleNavClick("home")}
+                className={`py-2 hover:text-foreground/70 transition-all cursor-pointer duration-300 font-sporting-grotesque text-[16px] text-left ${
+                  activeSection === "hero" ? "text-primary font-bold" : ""
+                }`}
+                whileTap={{ scale: 0.98 }}
               >
                 Home
-              </Link>
-              <Link
-                href="#"
-                className="py-2 hover:text-foreground/70 transition-colors font-sporting-grotesque text-[16px]"
-                onClick={() => setMobileMenuOpen(false)}
+              </motion.button>
+
+              <motion.button
+                onClick={() => handleNavClick("about")}
+                className={`py-2 hover:text-foreground/70 transition-all cursor-pointer duration-300 font-sporting-grotesque text-[16px] text-left ${
+                  activeSection === "about" ? "text-primary font-bold" : ""
+                }`}
+                whileTap={{ scale: 0.98 }}
               >
                 About
-              </Link>
-              <Link
-                href="#"
-                className="py-2 hover:text-foreground/70 transition-colors font-sporting-grotesque text-[16px]"
-                onClick={() => setMobileMenuOpen(false)}
+              </motion.button>
+
+              <motion.button
+                onClick={() => handleNavClick("portfolio")}
+                className={`py-2 hover:text-foreground/70 transition-all cursor-pointer duration-300 font-sporting-grotesque text-[16px] text-left ${
+                  activeSection === "skills" ? "text-primary font-bold" : ""
+                }`}
+                whileTap={{ scale: 0.98 }}
               >
                 Portfolio
-              </Link>
-              <Link
-                href="#"
-                className="py-2 hover:text-foreground/70 transition-colors font-sporting-grotesque text-[16px]"
-                onClick={() => setMobileMenuOpen(false)}
+              </motion.button>
+
+              <motion.button
+                onClick={() => handleNavClick("blog")}
+                className={`py-2 hover:text-foreground/70 transition-all cursor-pointer duration-300 font-sporting-grotesque text-[16px] text-left ${
+                  activeSection === "process" ? "text-primary font-bold" : ""
+                }`}
+                whileTap={{ scale: 0.98 }}
               >
                 Blog
-              </Link>
+              </motion.button>
               <Button
                 icon={<ArrowRight size={20} />}
                 size="sm"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => handleNavClick("contact")}
               >
                 Start Project
               </Button>

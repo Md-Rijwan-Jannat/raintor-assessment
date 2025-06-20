@@ -7,7 +7,7 @@ interface TContainerProps {
 
 export default function Container({ className, children }: TContainerProps) {
   return (
-    <div className={`${className} max-w-[1440px] mx-auto px-3 md:p-4]`}>
+    <div className={`${className} max-w-[1440px] mx-auto px-3 md:px-4`}>
       {children}
     </div>
   );

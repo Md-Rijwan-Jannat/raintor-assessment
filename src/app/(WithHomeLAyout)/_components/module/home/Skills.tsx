@@ -209,15 +209,15 @@ export const Skills = () => {
   };
 
   return (
-    <div className="-mt-24 p-1 bg-transparent">
-      <Container className="px-4 sm:px-8 md:px-12 py-8 md:py-12 bg-black text-white rounded-3xl md:rounded-4xl">
+    <div className="p-1 bg-transparent z-50">
+      <Container className="px-4 sm:px-8 md:px-12 py-8 md:py-12 bg-black text-white rounded-3xl md:rounded-4xl overflow-hidden">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true, margin: "-100px" }}
         >
-          <SectionButton>Why Choose me</SectionButton>
+          <SectionButton targetSection="about">Why Choose me</SectionButton>
         </motion.div>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 md:mb-12">
           <motion.div

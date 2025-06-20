@@ -2,17 +2,17 @@ import React from "react";
 
 export default function WorkedOn() {
   return (
-    <div className="flex flex-col md:flex-row justify-between items-start w-full">
-      <div className="text-[26px] leading-[41px] font-bold mb-8 whitespace-nowrap md:mr-6">
+    <div className="flex flex-col lg:flex-row justify-between items-start w-full gap-6 lg:gap-8">
+      <div className="text-lg sm:text-xl md:text-2xl lg:text-[26px] leading-6 sm:leading-7 md:leading-8 lg:leading-[41px] font-bold text-center lg:text-left lg:whitespace-nowrap">
         PREVIOUSLY <br /> WORKED ON
       </div>
 
-      <div className="flex flex-col w-full gap-3 md:gap-4 items-center justify-center overflow-x-auto">
+      <div className="flex flex-col w-full gap-3 md:gap-4 items-center justify-center overflow-x-auto px-2 sm:px-0">
         <svg
           viewBox="0 0 1058 218"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-auto max-w-[90vw] sm:max-w-[80vw] md:max-w-[70vw] lg:max-w-[1058px] object-contain"
+          className="w-full h-auto min-w-[280px] max-w-[95vw] sm:max-w-[85vw] md:max-w-[75vw] lg:max-w-[1058px] object-contain"
         >
           <rect
             x="108.072"
